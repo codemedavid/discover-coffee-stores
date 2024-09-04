@@ -1,19 +1,26 @@
-'use server'
+'use server';
 
-import { updateCoffeeStore } from "@/lib/airtable"
+import { updateCoffeeStore } from '@/lib/airtable';
+
 type State = {
-    id: string
-}
-export const upvoteAction = async (prevState: State) => {
-    console.log("Upvote action")
-    const {id} = prevState
-    const data = await updateCoffeeStore(id)
-    console.log({data})
+  id: string;
+  voting: number;
+};
 
-    if(data) {
-        return {
-            voting: data.length > 0 ? data[0].voting : 0,
-            id
-        }
-    }
-}
+export const upvoteAction = async (state: State, formData: FormData) => {
+  console.log('upvote action');
+
+  const { id } = state;
+
+  const data = await updateCoffeeStore(id);
+  console.log({ data });
+
+  if (data) {
+    return {
+      voting: data.length > 0 ? data[0].voting : 0,
+      id,
+    };
+  }
+
+  return state;  // Return the current state if no data
+};

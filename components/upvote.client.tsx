@@ -35,11 +35,10 @@ export default function Upvote({ voting, id }: { voting: number; id: string }) {
     voting,
   };
 
-  const [state, formAction] = useFormState(upvoteAction, initialState);
-  
+  const [state, dispatch] = useFormState(upvoteAction, initialState);
 
   return (
-    <form action={formAction}>
+    <form action={dispatch}>
       <div className="mb-6 flex">
         <Image
           src="/static/icons/star.svg"
