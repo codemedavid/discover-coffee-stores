@@ -12,6 +12,9 @@ export const metadata: Metadata = {
 
   async function getData() {
   //mapbox_api
+  if(!process.env.MAPBOX_API || !process.env.UNSPLASH_ACCESS_KEY || !process.env.AIRTABLE_TOKEN){
+    throw new Error('One of the API Keys are not configured')
+  }
   const TORONTO_LONG_LAT = '121.022031,14.6564211'
    return await fetchCoffeeStores(TORONTO_LONG_LAT, 8)
   }

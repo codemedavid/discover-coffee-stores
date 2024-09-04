@@ -36,6 +36,7 @@ export default function Upvote({ voting, id }: { voting: number; id: string }) {
   };
 
   const [state, formAction] = useFormState(upvoteAction, initialState);
+  
 
   return (
     <form action={formAction}>
